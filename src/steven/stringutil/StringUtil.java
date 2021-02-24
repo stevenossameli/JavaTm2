@@ -23,15 +23,39 @@ public class StringUtil {
     }
 
     public static String ltrim(String s){
-        return s.replaceAll("^\\s+", "");
+
+        char[] chars = s.toCharArray();
+        int index = 0;
+
+        for (int i = 0; i < chars.length; i++) {
+            if(chars[i]!= ' '){
+                index = i;
+                break;
+            }
+        }
+
+        return s.substring(index);
+
     }
 
     public static String rtrim(String s) {
-        return s.replaceAll("\\s+$", "");
+
+        char[] chars = s.toCharArray();
+        int index = 0;
+
+        for (int i = chars.length-1; i >= 0; i--) {
+            if(chars[i]!= ' '){
+                index = i;
+                break;
+            }
+        }
+
+        return s.substring(0, index);
+
     }
 
     public static String trim(String s){
-        return s.trim();
+        return rtrim(ltrim(s));
     }
 
     public static int indexOfN(String s, char c, int n){
